@@ -1,6 +1,7 @@
 package com.dindon.jppower;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.drawable.AnimationDrawable;
@@ -33,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -74,9 +76,9 @@ public class HomeFragment extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
         Log.d(TAG, "onCreateView");
         View v = inflater.inflate(R.layout.fragment_home, container, false);
+        unbinder = ButterKnife.bind(this, v);
         activity = ((MainActivity) getActivity());
         activity.setSendData(sendData);
-        unbinder = ButterKnife.bind(this, v);
         initViews();
         mode_Rec = 0;
         timerState = false;
@@ -84,10 +86,34 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.d(TAG, "onAttach");
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d(TAG, "onDetach");
+        if (batteryTimer != null)
+            batteryTimer.cancel();
+        if (chartTimer != null)
+            chartTimer.cancel();
+        if (iconTimer != null)
+            iconTimer.cancel();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         Log.d(TAG, "onDestroyView");
-        unbinder.unbind();
+//        unbinder.unbind();
         if (batteryTimer != null)
             batteryTimer.cancel();
         if (chartTimer != null)
@@ -424,41 +450,6 @@ public class HomeFragment extends Fragment {
                 if (animationDrawable_build != null && animationDrawable_build.isRunning())
                     animationDrawable_build.stop();
                 iv_build_anim.setImageResource(R.drawable.anim_build_normal);
-
-                if (iconTimer != null)
-                    iconTimer.cancel();
-                iconTimer = new Timer(true);
-                iconTimer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        activity.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (iconState) {
-                                    iconState = false;
-                                    iv_tram.setVisibility(View.VISIBLE);
-                                    iv_solar.setVisibility(View.VISIBLE);
-                                    iv_wind.setVisibility(View.VISIBLE);
-                                    iv_generator.setVisibility(View.VISIBLE);
-                                    iv_control.setVisibility(View.VISIBLE);
-                                    iv_soc.setVisibility(View.VISIBLE);
-                                    iv_build039.setVisibility(View.VISIBLE);
-                                    iv_build048.setVisibility(View.VISIBLE);
-                                } else {
-                                    iconState = true;
-                                    iv_solar.setVisibility(View.VISIBLE);
-                                    iv_wind.setVisibility(View.VISIBLE);
-                                    iv_generator.setVisibility(View.VISIBLE);
-                                    iv_control.setVisibility(View.VISIBLE);
-                                    iv_soc.setVisibility(View.VISIBLE);
-                                    iv_tram.setVisibility(View.VISIBLE);
-                                    iv_build048.setVisibility(View.VISIBLE);
-                                    iv_build039.setVisibility(View.VISIBLE);
-                                }
-                            }
-                        });
-                    }
-                }, 0, 500);
                 break;
 
             case 1:
@@ -1179,7 +1170,7 @@ public class HomeFragment extends Fragment {
                                     iv_build048.setVisibility(View.VISIBLE);
                                 } else {
                                     iconState = true;
-                                    iv_tram.setVisibility(View.INVISIBLE);
+                                    iv_tram.setVisibility(View.INVISIBLE    );
                                     iv_solar.setVisibility(View.INVISIBLE);
                                     iv_wind.setVisibility(View.INVISIBLE);
                                     iv_generator.setVisibility(View.INVISIBLE);
@@ -1588,7 +1579,7 @@ public class HomeFragment extends Fragment {
                                     iv_solar.setVisibility(View.INVISIBLE);
                                     iv_wind.setVisibility(View.INVISIBLE);
                                     iv_generator.setVisibility(View.INVISIBLE);
-                                    iv_control.setVisibility(View.VISIBLE);
+                                    iv_control.setVisibility(View.INVISIBLE);
                                     iv_soc.setVisibility(View.INVISIBLE);
                                     iv_build048.setVisibility(View.INVISIBLE);
                                     iv_build039.setVisibility(View.INVISIBLE);

@@ -26,6 +26,7 @@ import com.inuker.bluetooth.library.connect.options.BleConnectOptions;
 import com.inuker.bluetooth.library.connect.response.BleConnectResponse;
 import com.inuker.bluetooth.library.connect.response.BleNotifyResponse;
 import com.inuker.bluetooth.library.connect.response.BleReadResponse;
+import com.inuker.bluetooth.library.connect.response.BleUnnotifyResponse;
 import com.inuker.bluetooth.library.connect.response.BleWriteResponse;
 import com.inuker.bluetooth.library.model.BleGattProfile;
 import com.inuker.bluetooth.library.model.BleGattService;
@@ -55,13 +56,14 @@ public class MainActivity extends Activity {
         return mode;
     }
 
-    public void setSendData(SendData sendData){     //create setter for interface
+    public void setSendData(SendData sendData) {     //create setter for interface
         this.sendData = sendData;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -78,28 +80,34 @@ public class MainActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.d(TAG,"onDestroy");
-        if (JPresult != null)
+        Log.d(TAG, "onDestroy");
+        if (JPresult != null) {
             client.disconnect(JPresult.getDevice().getAddress());
+            client.unnotify(JPresult.getDevice().getAddress(), BleAttribute.UUID_SERVICE, BleAttribute.UUID_CHAR, bleUnnotifyResponse);
+        }
         finish();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d(TAG,"onPause");
-        if (JPresult != null)
-            client.disconnect(JPresult.getDevice().getAddress());
-        finish();
+        Log.d(TAG, "onPause");
+//        if (JPresult != null) {
+//            client.disconnect(JPresult.getDevice().getAddress());
+//            client.unnotify(JPresult.getDevice().getAddress(), BleAttribute.UUID_SERVICE, BleAttribute.UUID_CHAR, bleUnnotifyResponse);
+//        }
+//        finish();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d(TAG,"onStop");
-        if (JPresult != null)
-            client.disconnect(JPresult.getDevice().getAddress());
-        finish();
+        Log.d(TAG, "onStop");
+//        if (JPresult != null) {
+//            client.disconnect(JPresult.getDevice().getAddress());
+//            client.unnotify(JPresult.getDevice().getAddress(), BleAttribute.UUID_SERVICE, BleAttribute.UUID_CHAR, bleUnnotifyResponse);
+//        }
+//        finish();
     }
 
     ScanResult JPresult;
@@ -143,10 +151,18 @@ public class MainActivity extends Activity {
                                 client.registerConnectStatusListener(result.getDevice().getAddress(), new BleConnectStatusListener() {
                                     @Override
                                     public void onConnectStatusChanged(String mac, int status) {
-                                        Log.d(TAG,"status " + mac + ":" + status);
+                                        Log.d(TAG, "status " + mac + "/" + status);
                                         if (status == Constants.STATUS_CONNECTED) {
                                             tv_ble_status.setVisibility(View.GONE);
                                         } else if (status == Constants.STATUS_DISCONNECTED) {
+//                                            client.disconnect(JPresult.getDevice().getAddress());
+//                                            client.unnotify(JPresult.getDevice().getAddress(), BleAttribute.UUID_SERVICE, BleAttribute.UUID_CHAR, bleUnnotifyResponse);
+                                            tv_ble_status.setVisibility(View.VISIBLE);
+                                            tv_ble_status.setText("藍牙狀態：尋找裝置中");
+                                            bleScan.scan(MainActivity.this, bleScanCallback);
+                                        } else {
+//                                            client.disconnect(JPresult.getDevice().getAddress());
+//                                            client.unnotify(JPresult.getDevice().getAddress(), BleAttribute.UUID_SERVICE, BleAttribute.UUID_CHAR, bleUnnotifyResponse);
                                             tv_ble_status.setVisibility(View.VISIBLE);
                                             tv_ble_status.setText("藍牙狀態：尋找裝置中");
                                             bleScan.scan(MainActivity.this, bleScanCallback);
@@ -217,6 +233,14 @@ public class MainActivity extends Activity {
                 mode = 18;
             sendData.onDataListener(mode);
         }
+
+        @Override
+        public void onResponse(int code) {
+
+        }
+    };
+
+    private BleUnnotifyResponse bleUnnotifyResponse = new BleUnnotifyResponse() {
 
         @Override
         public void onResponse(int code) {
