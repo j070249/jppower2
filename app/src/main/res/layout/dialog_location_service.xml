@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/utilsDialogBgW"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dialogLocationService_tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="位置服務"
+        android:textColor="@color/utilsTextB"
+        android:textSize="12sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <TextView android:id="@+id/dialogLocationService_tv_content"
+                  android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:layout_marginEnd="45dp"
+                  android:layout_marginStart="45dp"
+                  android:lineSpacingExtra="3dp"
+                  android:text="網路設定需要您開啟位置服務，才可以為您搜尋到您寶貴的裝置"
+                  android:textColor="@color/utilsTextLB"
+                  android:textSize="13sp"/>
+
+        <View android:layout_width="match_parent" android:layout_height="1px"
+              android:layout_alignParentBottom="true"
+              android:background="@color/utilsDividerLB"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/dialogLocationService_tv_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/utils_btn_dialog_left"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/utilsTextB"
+            android:textSize="13sp"/>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/utilsDividerLB"/>
+
+        <TextView
+            android:id="@+id/dialogLocationService_tv_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/utils_btn_dialog_right"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="前往開啟"
+            android:textColor="@color/utilsTextB"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
+</LinearLayout>

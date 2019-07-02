@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" android:oneshot="false" >
+    <item android:drawable="@drawable/anim_wind_output1" android:duration="200"/>
+    <item android:drawable="@drawable/anim_wind_output2" android:duration="200"/>
+    <item android:drawable="@drawable/anim_wind_output3" android:duration="200"/>
+    <item android:drawable="@drawable/anim_wind_output4" android:duration="200"/>
+</animation-list>

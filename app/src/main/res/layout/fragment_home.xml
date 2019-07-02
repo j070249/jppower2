@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".MainActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/View1"
+            android:layout_width="400dp"
+            android:layout_height="360dp"
+            android:layout_marginBottom="80dp"
+            android:background="#000000"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart_power"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="50dp"
+            android:background="#000000"
+            app:layout_constraintBottom_toBottomOf="@id/View1"
+            app:layout_constraintEnd_toEndOf="@+id/View1"
+            app:layout_constraintStart_toStartOf="@+id/View1"
+            app:layout_constraintTop_toTopOf="@id/View1" />
+
+        <TextView
+            android:id="@+id/tv_sec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginStart="40dp"
+            android:text="0"
+            android:textColor="@color/utilsTextW"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView8"
+            app:layout_constraintStart_toStartOf="@id/textView8"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="功率變化趨勢圖"
+            android:textColor="@color/utilsTextW"
+            android:textSize="@dimen/normal_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/View1"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="時間(秒)"
+            android:textColor="@color/utilsTextW"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/View1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/View1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="270"
+            android:text="功率(kW)"
+            android:textColor="@color/utilsTextW"
+            android:textSize="@dimen/small_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/chart_power"
+            app:layout_constraintEnd_toStartOf="@+id/chart_power"
+            app:layout_constraintStart_toStartOf="@+id/View1"
+            app:layout_constraintTop_toTopOf="@+id/chart_power" />
+
+        <TextView
+            android:id="@+id/watts_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text=""
+            android:textColor="@color/utilsTextW"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_control"
+            app:layout_constraintStart_toStartOf="@+id/iv_control"
+            app:layout_constraintTop_toBottomOf="@+id/iv_control" />
+
+        <ImageView
+            android:id="@+id/iv_control"
+            android:layout_width="140dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_control"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="@string/text_control"
+            android:textColor="@color/textColor_main"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintEnd_toStartOf="@+id/iv_control"
+            app:layout_constraintTop_toBottomOf="@+id/iv_tram_anim" />
+
+        <TextView
+            android:id="@+id/watts_tram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="500 kW"
+            android:textColor="@color/utilsTextW"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_tram"
+            app:layout_constraintStart_toStartOf="@+id/iv_tram"
+            app:layout_constraintTop_toBottomOf="@+id/iv_tram" />
+
+        <ImageView
+            android:id="@+id/iv_tram"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="60dp"
+            android:src="@mipmap/ic_tram"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/text_tram"
+            android:textColor="@color/textColor_main"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/iv_tram"
+            app:layout_constraintEnd_toEndOf="@+id/iv_tram"
+            app:layout_constraintStart_toStartOf="@+id/iv_tram" />
+
+        <TextView
+            android:id="@+id/watts_solar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="100 kW"
+            android:textColor="@color/utilsTextW"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_solar"
+            app:layout_constraintStart_toStartOf="@+id/iv_solar"
+            app:layout_constraintTop_toBottomOf="@+id/iv_solar" />
+
+        <ImageView
+            android:id="@+id/iv_solar"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="60dp"
+            android:src="@mipmap/ic_solar"
+            app:layout_constraintStart_toEndOf="@id/iv_tram"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/text_solar"
+            android:textColor="@color/textColor_main"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/iv_solar"
+            app:layout_constraintEnd_toEndOf="@+id/iv_solar"
+            app:layout_constraintStart_toStartOf="@+id/iv_solar" />
+
+        <TextView
+            android:id="@+id/watts_wind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="200 kW"
+            android:textColor="@color/utilsTextW"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_wind"
+            app:layout_constraintStart_toStartOf="@+id/iv_wind"
+            app:layout_constraintTop_toBottomOf="@+id/iv_wind" />
+
+        <ImageView
+            android:id="@+id/iv_wind"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="60dp"
+            android:src="@mipmap/ic_wind"
+            app:layout_constraintStart_toEndOf="@id/iv_solar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/text_wind"
+            android:textColor="@color/textColor_main"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/iv_wind"
+            app:layout_constraintEnd_toEndOf="@+id/iv_wind"
+            app:layout_constraintStart_toStartOf="@+id/iv_wind" />
+
+        <TextView
+            android:id="@+id/watts_generator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="100 kW"
+            android:textColor="@color/utilsTextW"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_generator"
+            app:layout_constraintStart_toStartOf="@+id/iv_generator"
+            app:layout_constraintTop_toBottomOf="@+id/iv_generator" />
+
+        <ImageView
+            android:id="@+id/iv_generator"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="60dp"
+            android:src="@mipmap/ic_generator"
+            app:layout_constraintStart_toEndOf="@id/iv_wind"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/text_generatot"
+            android:textColor="@color/textColor_main"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/iv_generator"
+            app:layout_constraintEnd_toEndOf="@+id/iv_generator"
+            app:layout_constraintStart_toStartOf="@+id/iv_generator" />
+
+        <TextView
+            android:id="@+id/watts_soc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="200 kW"
+            android:textColor="@color/utilsTextW"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/iv_soc"
+            app:layout_constraintEnd_toEndOf="@+id/iv_soc"
+            app:layout_constraintStart_toStartOf="@+id/iv_soc" />
+
+        <TextView
+            android:id="@+id/battery_soc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="90%"
+            android:textColor="@color/utilsTextW"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintStart_toEndOf="@+id/iv_soc" />
+
+        <ImageView
+            android:id="@+id/iv_soc"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginBottom="100dp"
+            android:src="@mipmap/ic_soc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/text_soc"
+            android:textColor="@color/textColor_main"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_soc"
+            app:layout_constraintStart_toStartOf="@+id/iv_soc"
+            app:layout_constraintTop_toBottomOf="@+id/iv_soc" />
+
+        <TextView
+            android:id="@+id/watts_build"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="500 kW"
+            android:textColor="@color/utilsTextW"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/iv_build048"
+            app:layout_constraintEnd_toEndOf="@+id/iv_build039"
+            app:layout_constraintStart_toStartOf="@+id/iv_build048" />
+
+        <ImageView
+            android:id="@+id/iv_build048"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="68dp"
+            android:src="@mipmap/ic_build"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_control" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/text_048"
+            android:textColor="@color/textColor_main"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_build048"
+            app:layout_constraintStart_toStartOf="@+id/iv_build048"
+            app:layout_constraintTop_toBottomOf="@+id/iv_build048" />
+
+        <ImageView
+            android:id="@+id/iv_build039"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="68dp"
+            android:src="@mipmap/ic_build"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_build048" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/text_039"
+            android:textColor="@color/textColor_main"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintEnd_toEndOf="@+id/iv_build039"
+            app:layout_constraintStart_toStartOf="@+id/iv_build039"
+            app:layout_constraintTop_toBottomOf="@+id/iv_build039" />
+
+        <ImageView
+            android:id="@+id/iv_item_solar"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/ic_uncheck"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_item_solar"
+            app:layout_constraintEnd_toStartOf="@+id/tv_item_solar"
+            app:layout_constraintTop_toTopOf="@+id/tv_item_solar" />
+
+        <TextView
+            android:id="@+id/tv_item_solar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="60dp"
+            android:text="@string/text_solar"
+            android:textColor="@color/textColor_main"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintStart_toStartOf="@+id/tv_item_tram"
+            app:layout_constraintTop_toBottomOf="@+id/tv_item_tram"/>
+
+        <ImageView
+            android:id="@+id/iv_item_wind"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/ic_uncheck"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_item_wind"
+            app:layout_constraintEnd_toStartOf="@+id/tv_item_wind"
+            app:layout_constraintTop_toTopOf="@+id/tv_item_wind" />
+
+        <TextView
+            android:id="@+id/tv_item_wind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/text_wind"
+            android:textColor="@color/textColor_main"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintStart_toStartOf="@+id/tv_item_solar"
+            app:layout_constraintTop_toBottomOf="@+id/tv_item_solar" />
+
+        <ImageView
+            android:id="@+id/iv_item_charge"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/ic_uncheck"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_item_charge"
+            app:layout_constraintEnd_toStartOf="@+id/tv_item_charge"
+            app:layout_constraintTop_toTopOf="@+id/tv_item_charge" />
+
+        <TextView
+            android:id="@+id/tv_item_charge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/text_charge"
+            android:textColor="@color/textColor_main"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintStart_toStartOf="@+id/tv_item_discharge"
+            app:layout_constraintTop_toBottomOf="@+id/tv_item_discharge" />
+
+        <ImageView
+            android:id="@+id/iv_item_discharge"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/ic_uncheck"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_item_discharge"
+            app:layout_constraintEnd_toStartOf="@+id/tv_item_discharge"
+            app:layout_constraintTop_toTopOf="@+id/tv_item_discharge" />
+
+        <TextView
+            android:id="@+id/tv_item_discharge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/text_discharge"
+            android:textColor="@color/textColor_main"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintStart_toStartOf="@+id/tv_item_island"
+            app:layout_constraintTop_toBottomOf="@+id/tv_item_island" />
+
+        <ImageView
+            android:id="@+id/iv_item_tram"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/ic_uncheck"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_item_tram"
+            app:layout_constraintEnd_toStartOf="@+id/tv_item_tram"
+            app:layout_constraintTop_toTopOf="@+id/tv_item_tram" />
+
+        <TextView
+            android:id="@+id/tv_item_tram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="100dp"
+            android:text="市電併聯"
+            android:textColor="@color/textColor_main"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintEnd_toStartOf="@id/tv_item_island"
+            app:layout_constraintTop_toTopOf="@+id/tv_item_island" />
+
+        <ImageView
+            android:id="@+id/iv_item_island"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/ic_uncheck"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_item_island"
+            app:layout_constraintEnd_toStartOf="@+id/tv_item_island"
+            app:layout_constraintTop_toTopOf="@+id/tv_item_island" />
+
+        <TextView
+            android:id="@+id/tv_item_island"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/text_island"
+            android:textColor="@color/textColor_main"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_item_output"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/ic_uncheck"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_item_output"
+            app:layout_constraintEnd_toStartOf="@+id/tv_item_output"
+            app:layout_constraintTop_toTopOf="@+id/tv_item_output" />
+
+        <TextView
+            android:id="@+id/tv_item_output"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/text_output"
+            android:textColor="@color/textColor_main"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintStart_toStartOf="@+id/tv_item_wind"
+            app:layout_constraintTop_toBottomOf="@+id/tv_item_wind" />
+
+        <ImageView
+            android:id="@+id/iv_item_uninstall"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/ic_uncheck"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_item_uninstall"
+            app:layout_constraintEnd_toStartOf="@+id/tv_item_uninstall"
+            app:layout_constraintTop_toTopOf="@+id/tv_item_uninstall" />
+
+        <TextView
+            android:id="@+id/tv_item_uninstall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/text_uninstall"
+            android:textColor="@color/textColor_main"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintStart_toStartOf="@+id/tv_item_charge"
+            app:layout_constraintTop_toBottomOf="@+id/tv_item_charge" />
+
+        <Button
+            android:id="@+id/bt_qa"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_main_qa_button"
+            android:text="@string/text_QA"
+            android:textColor="@color/utilsTextW"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/bt_des"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_main_qa_button"
+            android:text="@string/text_des"
+            android:textColor="@color/utilsTextW"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/bt_qa" />
+
+        <EditText
+            android:id="@+id/et_mode"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="8dp"
+            android:text="0"
+            android:textColor="@color/utilsTextW"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/bt_mode"
+            app:layout_constraintEnd_toEndOf="@+id/bt_mode"
+            app:layout_constraintStart_toStartOf="@+id/bt_mode"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/bt_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="230dp"
+            android:layout_marginBottom="8dp"
+            android:text="OK"
+            android:textColor="@color/utilsTextW"
+            android:textSize="@dimen/large_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/iv_tram_anim"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="40dp"
+            android:src="@drawable/anim_tram_normal"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_control"
+            app:layout_constraintEnd_toStartOf="@+id/iv_control"
+            app:layout_constraintStart_toStartOf="@+id/iv_tram"
+            app:layout_constraintTop_toBottomOf="@+id/iv_tram" />
+
+        <ImageView
+            android:id="@+id/iv_solar_anim"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/anim_solar_normal"
+            app:layout_constraintBottom_toTopOf="@id/iv_control"
+            app:layout_constraintEnd_toEndOf="@id/iv_solar"
+            app:layout_constraintStart_toStartOf="@id/iv_solar"
+            app:layout_constraintTop_toBottomOf="@id/iv_solar" />
+
+        <ImageView
+            android:id="@+id/iv_wind_anim"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/anim_wind_normal"
+            app:layout_constraintBottom_toTopOf="@id/iv_control"
+            app:layout_constraintEnd_toEndOf="@id/iv_wind"
+            app:layout_constraintStart_toStartOf="@id/iv_control"
+            app:layout_constraintTop_toBottomOf="@id/iv_wind" />
+
+        <ImageView
+            android:id="@+id/iv_generator_anim"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="60dp"
+            android:src="@drawable/anim_generator_normal"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_control"
+            app:layout_constraintEnd_toEndOf="@id/iv_generator"
+            app:layout_constraintStart_toEndOf="@id/iv_control"
+            app:layout_constraintTop_toBottomOf="@id/iv_generator" />
+
+        <ImageView
+            android:id="@+id/iv_soc_anim"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="80dp"
+            android:src="@drawable/anim_soc_normal"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_soc"
+            app:layout_constraintEnd_toEndOf="@id/iv_control"
+            app:layout_constraintStart_toEndOf="@id/iv_soc"
+            app:layout_constraintTop_toBottomOf="@id/iv_control" />
+
+        <ImageView
+            android:id="@+id/iv_build_anim"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="50dp"
+            android:src="@drawable/anim_build_normal"
+            app:layout_constraintBottom_toTopOf="@id/iv_build039"
+            app:layout_constraintEnd_toEndOf="@id/iv_build039"
+            app:layout_constraintStart_toEndOf="@id/iv_control"
+            app:layout_constraintTop_toTopOf="@id/iv_control" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_des"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_home"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="20dp"
+            android:src="@mipmap/ic_home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="◎微電網互動模型之展示解說情境:"
+            android:textColor="@color/utilsTextW"
+            android:textSize="28dp"
+            app:layout_constraintStart_toStartOf="@+id/scrollView" />
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/colorBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@mipmap/iv_intro"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"/>
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="1.初始狀態(所有按鈕皆為off):互動模型燈號屬全黑狀態，民房屬亮燈狀態。-->
+
+<!--2.市電並聯狀態(按下「1.市電並聯」按鈕)：市電用電量=微電網負載量-PV發電量-風機發電量-儲能放電量-柴油發電機發電量-->
+
+  <!--2.1按下「市電並聯」按鈕:由台電OQ38饋線(即市電)傳送500kW電力(以紅色光帶動態流速顯示)至微電網試驗場，微電網試驗場以紅燈顯示運轉中，再傳送500kW電力至048館、039館負載(以紅色光帶動態流速顯示)，而048館、039館1樓及2樓各房間燈光均開啟，儲能以紅色光帶靜止流速顯示與微電網併接，且SOC顯示90%。-->
+
+  <!--2.2再生能源並聯發電狀態：按下「2.PV發電」按鈕，Zone 1、2之PV發電100kW流入微電網試驗場(以紅色光帶動態流速顯示)，市電傳送至微電網試驗場之電力變為400kW，再按「3.風機發電」按鈕，則風機轉動發電200kW流入微電網試驗場(以紅色光帶動態流速顯示)，而市電僅剩200 kW流入微電網試驗場。-->
+
+  <!--2.3儲能充放電狀態：-->
+    <!--(1)儲能SOC顯示90%，按下「4.儲能放電」按鈕，則儲能放電200 kW至微電網試驗場(以紅色光帶動態流速顯示儲能放電)，市電變為0kW(以紅色光帶靜止流速顯示)，放電至SOC為20%為止，不再放電(以紅色光帶靜止流速顯示)，而市電恢復為200kW流入微電網試驗場。-->
+
+    <!--(2)儲能SOC顯示20%，按下「5.儲能充電」按鈕，則以200 kW對儲能充電(以紅色光帶動態流速顯示儲能放電)，市電變為提供400kW電力，儲能充電至SOC為90%為止，不再充電(以紅色光帶靜止流速顯示停止充電)，而市電恢復為200kW流入微電網試驗場。-->
+
+  <!--2.4卸載狀態(台電電力不足，要求本所微電網卸載200kW):-->
+<!--當072館控制室接到台電桃園區處下達需量卸載調度命令時，按下「6.卸載」按鈕，由台電桃園區處以綠色光帶訊號線顯示「卸載」命令(先有流動再停止)通知072館控制室，以048館、039館2樓整排房間熄滅代表卸載200kW，同時將市電改為0kW(以紅色光帶靜止流速顯示)。-->
+
+  <!--2.5微電網輸出100 kW之電力輔助服務(台電電力不足，要求本所微電網輸出100kW電力)-->
+<!--當072館控制室接到台電桃園區處下達本所微電網輸出100kW之調度命令時，按下「7.輸出100kW」按鈕，由台電桃園區處以綠色光帶訊號線顯示「輸出100kW」命令(先有流動再停止)通知072館控制室及柴油發電機，柴油發電機紅燈自動亮，柴油發電機輸出100kW至微電網試驗場(以紅色光帶動態流速顯示)，微電網試驗場維持提供300kW至048館、039館負載（048館、039館2樓整排房間熄滅），而微電網試驗場則輸出100kW電力至市電。-->
+<!--3.孤島運轉狀態(台電系統發生異常，本所微電網切為孤島運轉): 儲能放電量=微電網負載量-PV發電量-風機發電量-柴油發電量(此時「儲能充電」、「儲能放電」按鈕失效)-->
+
+    <!--(1)	按下「1.孤島運轉」按鈕，「市電並聯」及「輸出100kW」按鈕會關閉off，將台電OQ38饋線沿路之一段路燈熄滅以及至微電網試驗場之電力中斷(以關閉紅色光帶及數值0顯示)。此時，PV發電100kW、風機轉動發電200kW、048館及039館負載為300kW(048館及039館2樓整排房間熄滅)，柴油發電機輸出變為0kW，則儲能以紅色光帶靜止流速顯示與微電網併接，且SOC顯示90%。-->
+
+    <!--(2)	當「2.PV發電」按鈕off，即PV發電變為0kW、風機轉動發電200kW、048館及039館負載為300kW，則儲能放電100kW，放電至SOC為20%為止，不再放電(以紅色光帶靜止流速顯示)，則柴油發電機紅燈自動亮，並輸出100kW (以紅色光帶動態流速顯示)。-->
+
+
+    <!--(3)	當「3.風機發電」按鈕off，即風機轉動發電均變為0kW、048館及039館負載為300kW，則柴油發電機輸出增加至300kW (以紅色光帶動態流速顯示)。-->
+
+    <!--(4)按下「2.PV發電」及「3.風機發電」按鈕，PV發電100kW、風機轉動發電200kW、及柴油發電機輸出300kW (以紅色光帶動態流速顯示)，048館及039館負載為300kW，則對儲能充電300kW，充電至SOC為90%為止，不再充電(以紅色光帶靜態流速顯示停止充電)，柴油發電機紅燈自動關閉。-->
+<!--"-->
+                <!--android:textColor="@color/utilsTextW"-->
+                <!--android:textSize="24sp" />-->
+
+
+        </ScrollView>
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
